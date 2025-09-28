@@ -34,6 +34,12 @@ const RegisterPage = () => {
       passwordConfirm: data.passwordConfirm
     })
 
+    if (response?.error) {
+      form.setError('email', {
+        message: response?.message
+      })
+    }
+
     console.log(response)
   }
 

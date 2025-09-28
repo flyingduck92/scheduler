@@ -6,6 +6,7 @@ import { passwordMatchSchema } from '@/validation/passwordMatchSchema'
 import z from 'zod'
 import { users } from '@/db/usersSchema'
 import { profiles } from '@/db/profilesSchema'
+import { eq } from 'drizzle-orm'
 
 const registerUser = async ({ email, password, passwordConfirm }) => {
 
@@ -57,7 +58,7 @@ const registerUser = async ({ email, password, passwordConfirm }) => {
     }
 
     // if found duplication
-    if (err?.caused?.code === '23505') {
+    if (err?.cause?.code === '23505') {
       return {
         error: true,
         message: 'An account is already registered'
